@@ -11,11 +11,13 @@ function formatAs12HourClock(time) {
   if (hours >= 12) {
     suffix = "pm";
   }
+
   let formattedHours = hours % 12;
 
   if (formattedHours === 0) {
     formattedHours = 12;
   }
+
   return `${formattedHours}:${minutes} ${suffix}`;
 }
 
@@ -32,6 +34,7 @@ console.assert(
   currentOutput2 === targetOutput2,
   `current output: ${currentOutput2}, target output: ${targetOutput2}`,
 );
+
 const noonOutput = formatAs12HourClock("12:00");
 const noonTarget = "12:00 pm";
 console.assert(
@@ -45,4 +48,11 @@ console.assert(
   midnightOutput === midnightTarget,
   `current output: ${midnightOutput}, target output: ${midnightTarget}`,
 );
-console.log("All tests passed");
+
+const minuteOutput = formatAs12HourClock("13:05");
+const minuteTarget = "01:05 pm";
+console.assert(
+  minuteOutput === minuteTarget,
+  `current output: ${minuteOutput}, target output: ${minuteTarget}`,
+);
+console.log("all tests passed");
