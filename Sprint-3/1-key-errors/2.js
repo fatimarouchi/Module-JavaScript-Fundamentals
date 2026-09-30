@@ -3,7 +3,7 @@
 
 // this function should square any number but instead we're going to get an error
 
-// =============> write your prediction of the error here
+// =============> // I predict a SyntaxError because 3 is a number, but a function parameter needs to be a name.
 
 function square(3) {
     return num * num;
