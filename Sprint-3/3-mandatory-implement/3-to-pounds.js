@@ -5,12 +5,9 @@
 
 // You should call this function a number of times to check it works for different inputs
 function toPounds(penceString) {
-  const penceStringWithoutTrailingP = penceString.substring(
-    0,
-    penceString.length - 1,
-  );
+  const penceNumberString = String(penceString).replace(/p$/i, "");
+  const paddedPenceNumberString = penceNumberString.padStart(3, "0");
 
-  const paddedPenceNumberString = penceStringWithoutTrailingP.padStart(3, "0");
   const pounds = paddedPenceNumberString.substring(
     0,
     paddedPenceNumberString.length - 2,
