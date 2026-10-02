@@ -5,7 +5,7 @@
 function formatAs12HourClock(time) {
   const [hoursString, minutesString = "00"] = time.split(":");
   const hours = Number(hoursString);
-  const minutes = minutesString;
+  const minutes = minutesString.padStart(2, "0");
 
   let suffix = "am";
   if (hours >= 12) {
@@ -39,6 +39,13 @@ const midnightTarget = "12:00 am";
 console.assert(
   midnightOutput === midnightTarget,
   `current output: ${midnightOutput}, target output: ${midnightTarget}`,
+);
+
+const singleDigitMinuteOutput = formatAs12HourClock("9:5");
+const singleDigitMinuteTarget = "9:05 am";
+console.assert(
+  singleDigitMinuteOutput === singleDigitMinuteTarget,
+  `current output: ${singleDigitMinuteOutput}, target output: ${singleDigitMinuteTarget}`,
 );
 
 console.log("All formatAs12HourClock tests passed.");
