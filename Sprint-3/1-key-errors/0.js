@@ -14,8 +14,12 @@ capitalise("hello");*/
    The function stops before it can run. */
 // =============> write your new code here
 function capitalise(str) {
+  if (str === "") {
+    return "";
+  }
+
   const result = `${str[0].toUpperCase()}${str.slice(1)}`;
   return result;
 }
-capitalise("hello");
-console.log(capitalise("hello"));
+
+console.log(`Result: "${capitalise("")}"`);
