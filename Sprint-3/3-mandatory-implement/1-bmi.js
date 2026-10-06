@@ -17,4 +17,18 @@
 function calculateBMI(weight, height) {
   return (weight / (height * height)).toFixed(1);
 }
+
 console.log(calculateBMI(52, 1.63));
+
+console.assert(
+  calculateBMI(70, 1.73) === "23.4",
+  "Expected BMI for 70kg and 1.73m to be 23.4",
+);
+console.assert(
+  calculateBMI(80, 1.8) === "24.7",
+  "Expected BMI for 80kg and 1.8m to be 24.7",
+);
+console.assert(
+  calculateBMI(60, 1.6) === "23.4",
+  "Expected BMI for 60kg and 1.6m to be 23.4",
+);
