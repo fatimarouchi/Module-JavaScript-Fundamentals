@@ -12,45 +12,26 @@ function formatAs12HourClock(time) {
     suffix = "pm";
   }
 
-  let formattedHours = String(hours % 12 || 12);
-  formattedHours = formattedHours.padStart(2, "0");
+  const formattedHours = String(hours % 12 || 12).padStart(2, "0");
 
   return `${formattedHours}:${minutes} ${suffix}`;
 }
 
-const currentOutput2 = formatAs12HourClock("23:00");
-const targetOutput2 = "11:00 pm";
-console.assert(
-  currentOutput2 === targetOutput2,
-  `current output: ${currentOutput2}, target output: ${targetOutput2}`,
-);
+function check(input, expected) {
+  const actual = formatAs12HourClock(input);
 
-const noonOutput = formatAs12HourClock("12:00");
-const noonTarget = "12:00 pm";
-console.assert(
-  noonOutput === noonTarget,
-  `current output: ${noonOutput}, target output: ${noonTarget}`,
-);
+  if (actual !== expected) {
+    console.error(`FAIL: ${input} -> ${actual} (expected ${expected})`);
+    process.exitCode = 1;
+  }
+}
 
-const midnightOutput = formatAs12HourClock("00:00");
-const midnightTarget = "12:00 am";
-console.assert(
-  midnightOutput === midnightTarget,
-  `current output: ${midnightOutput}, target output: ${midnightTarget}`,
-);
+check("23:00", "11:00 pm");
+check("12:00", "12:00 pm");
+check("00:00", "12:00 am");
+check("08:00", "08:00 am");
+check("9:5", "09:05 am");
 
-const paddedHourOutput = formatAs12HourClock("08:00");
-const paddedHourTarget = "08:00 am";
-console.assert(
-  paddedHourOutput === paddedHourTarget,
-  `current output: ${paddedHourOutput}, target output: ${paddedHourTarget}`,
-);
-
-const singleDigitMinuteOutput = formatAs12HourClock("9:5");
-const singleDigitMinuteTarget = "09:05 am";
-console.assert(
-  singleDigitMinuteOutput === singleDigitMinuteTarget,
-  `current output: ${singleDigitMinuteOutput}, target output: ${singleDigitMinuteTarget}`,
-);
-
-console.log("All formatAs12HourClock tests passed.");
+if (!process.exitCode) {
+  console.log("All formatAs12HourClock tests passed.");
+}
