@@ -19,3 +19,12 @@ function toUpperSnakeCase(words) {
 }
 
 console.log(toUpperSnakeCase("hello there"));
+
+console.assert(
+  toUpperSnakeCase("hello") === "HELLO",
+  'Expected "hello" to become "HELLO"',
+);
+console.assert(
+  toUpperSnakeCase("  hello   there  ") === "HELLO_THERE",
+  "Expected extra spaces to be trimmed and collapsed to one underscore",
+);
