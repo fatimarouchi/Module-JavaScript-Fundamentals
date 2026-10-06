@@ -12,10 +12,8 @@ function formatAs12HourClock(time) {
     suffix = "pm";
   }
 
-  let formattedHours = hours % 12;
-  if (formattedHours === 0) {
-    formattedHours = 12;
-  }
+  let formattedHours = String(hours % 12 || 12);
+  formattedHours = formattedHours.padStart(2, "0");
 
   return `${formattedHours}:${minutes} ${suffix}`;
 }
@@ -41,8 +39,15 @@ console.assert(
   `current output: ${midnightOutput}, target output: ${midnightTarget}`,
 );
 
+const paddedHourOutput = formatAs12HourClock("08:00");
+const paddedHourTarget = "08:00 am";
+console.assert(
+  paddedHourOutput === paddedHourTarget,
+  `current output: ${paddedHourOutput}, target output: ${paddedHourTarget}`,
+);
+
 const singleDigitMinuteOutput = formatAs12HourClock("9:5");
-const singleDigitMinuteTarget = "9:05 am";
+const singleDigitMinuteTarget = "09:05 am";
 console.assert(
   singleDigitMinuteOutput === singleDigitMinuteTarget,
   `current output: ${singleDigitMinuteOutput}, target output: ${singleDigitMinuteTarget}`,
